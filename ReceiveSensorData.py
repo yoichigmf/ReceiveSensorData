@@ -180,6 +180,14 @@ class ReceiveSensorData:
             self.iface.removeToolBarIcon(action)
 
 
+
+    #  start recieve sensor data
+    def recievestart(self):
+
+    #  stop  recieve sensor data
+    def recievestop( self ):
+
+
     def run(self):
         """Run method that performs all the real work"""
 
