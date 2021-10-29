@@ -35,6 +35,9 @@ import os.path
 class ReceiveSensorData:
     """QGIS Plugin Implementation."""
 
+    resieveStatus = False
+    
+
     def __init__(self, iface):
         """Constructor.
 
@@ -183,10 +186,12 @@ class ReceiveSensorData:
 
     #  start recieve sensor data
     def recievestart(self):
+        resieveStatus = True
+            
 
     #  stop  recieve sensor data
     def recievestop( self ):
-
+        resieveStatus = False
 
     def run(self):
         """Run method that performs all the real work"""
