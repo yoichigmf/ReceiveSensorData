@@ -25,6 +25,15 @@ from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
 
+
+from qgis.core  import QgsTask
+
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+import time
+
+
+
 # Initialize Qt resources from file resources.py
 from .resources import *
 # Import the code for the dialog
@@ -202,6 +211,8 @@ class ReceiveSensorData:
             self.first_start = False
             self.dlg = ReceiveSensorDataDialog()
 
+            self.dlg.buttonStartStop.clicked.connect(self.sensorget)
+
         # show the dialog
         self.dlg.show()
         # Run the dialog event loop
@@ -211,3 +222,39 @@ class ReceiveSensorData:
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
             pass
+
+    def sensorget(self):
+        #self.iface.messageBar().createMessage('Action', 'Doing Something') 
+        self.iface.messageBar().pushMessage('Action')
+
+
+
+class SensorReadTask(QgsTask):
+    """Here we subclass QgsTask"""
+    def __init__(self, desc):
+        QgsTask.__init__(self, desc)
+
+    def run(self):
+        """This function is where you do the 'heavy lifting' or implement
+        the task which you want to run in a background thread. This function 
+        must return True or False and should only interact with the main thread
+        via signals"""
+        for i in range (21):
+            time.sleep(0.25)
+            val = i * 5
+            #report progress which can be received by the main thread
+            self.setProgress(val)
+            #check to see if the task has been cancelled
+            if self.isCanceled():
+                return False
+        return True
+
+    def finished(self, result):
+        """This function is called automatically when the task is completed and is
+        called from the main thread so it is safe to interact with the GUI etc here"""
+        if result is False:
+            iface.messageBar().pushMessage('Task was cancelled', duration=3)
+        else:
+            iface.messageBar().pushMessage('Task Complete', duration=3)
+
+

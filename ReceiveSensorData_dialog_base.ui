@@ -7,7 +7,6 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>177</height>
     <height>367</height>
    </rect>
   </property>
@@ -30,7 +29,7 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="buttanStart">
+  <widget class="QPushButton" name="buttonStartStop">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -53,19 +52,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="buttonStop">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>60</y>
-     <width>131</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>センサ取得終了</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -80,13 +66,6 @@
    </property>
   </widget>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QgsMapLayerComboBox</class>
-   <extends>QComboBox</extends>
-   <header>qgsmaplayercombobox.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections>
   <connection>
