@@ -44,7 +44,7 @@ import os.path
 class ReceiveSensorData:
     """QGIS Plugin Implementation."""
 
-    resieveStatus = False
+    recieveStatus = False
     
 
     def __init__(self, iface):
@@ -78,6 +78,9 @@ class ReceiveSensorData:
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
         self.first_start = None
+
+        self.recieveStatus = False
+        
 
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
@@ -195,12 +198,12 @@ class ReceiveSensorData:
 
     #  start recieve sensor data
     def recievestart(self):
-        resieveStatus = True
+        self.recieveStatus = True
             
 
     #  stop  recieve sensor data
     def recievestop( self ):
-        resieveStatus = False
+        self.recieveStatus = False
 
     def run(self):
         """Run method that performs all the real work"""
@@ -212,6 +215,11 @@ class ReceiveSensorData:
             self.dlg = ReceiveSensorDataDialog()
 
             self.dlg.buttonStartStop.clicked.connect(self.sensorget)
+            self.dlg.buttonStartStop.setText('センサ取得開始')
+
+            self.task = SensorReadTask("get sensor data")
+            self.task.setiface(self.iface)
+
 
         # show the dialog
         self.dlg.show()
@@ -225,14 +233,33 @@ class ReceiveSensorData:
 
     def sensorget(self):
         #self.iface.messageBar().createMessage('Action', 'Doing Something') 
-        self.iface.messageBar().pushMessage('Action')
+
+        if self.recieveStatus:
+            self.iface.messageBar().pushMessage('Stop')
+            self.recieveStatus= False
+            self.dlg.buttonStartStop.setText('センサ取得開始')
+        else:
+            self.iface.messageBar().pushMessage('Start')
+            self.recieveStatus= True
+            self.dlg.buttonStartStop.setText('センサ取得中止')
 
 
 
 class SensorReadTask(QgsTask):
     """Here we subclass QgsTask"""
+
+    iface = None
+
+    xpos = 0.0
+
+    recievestatus = False
+
     def __init__(self, desc):
         QgsTask.__init__(self, desc)
+
+    def  setiface( self, iface ):
+
+        self.iface = iface
 
     def run(self):
         """This function is where you do the 'heavy lifting' or implement
@@ -253,8 +280,8 @@ class SensorReadTask(QgsTask):
         """This function is called automatically when the task is completed and is
         called from the main thread so it is safe to interact with the GUI etc here"""
         if result is False:
-            iface.messageBar().pushMessage('Task was cancelled', duration=3)
+            self.iface.messageBar().pushMessage('Task was cancelled', duration=3)
         else:
-            iface.messageBar().pushMessage('Task Complete', duration=3)
+            self.iface.messageBar().pushMessage('Task Complete', duration=3)
 
 
