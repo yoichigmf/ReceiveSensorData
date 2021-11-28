@@ -1,0 +1,1710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PosiviewPropertiesBase</class>
+ <widget class="QDialog" name="PosiviewPropertiesBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>847</width>
+    <height>850</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>700</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>センサ受信プロパティ</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/plugins/PosiView/icon.png</normaloff>:/plugins/PosiView/icon.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_9">
+   <item>
+    <widget class="QSplitter" name="mOptionsSplitter">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="childrenCollapsible">
+      <bool>false</bool>
+     </property>
+     <widget class="QFrame" name="mOptionsListFrame">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QListWidget" name="mOptionsListWidget">
+         <property name="minimumSize">
+          <size>
+           <width>58</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: gray;</string>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="textElideMode">
+          <enum>Qt::ElideNone</enum>
+         </property>
+         <property name="resizeMode">
+          <enum>QListView::Adjust</enum>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string>General</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/images/themes/default/propertyicons/general.svg</normaloff>:/images/themes/default/propertyicons/general.svg</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Position Provider</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/plugins/PosiView/sensor.png</normaloff>:/plugins/PosiView/sensor.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Mobile/Vehicles</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/plugins/PosiView/auv.png</normaloff>:/plugins/PosiView/auv.png</iconset>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QFrame" name="mOptionsFrame">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>1</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QStackedWidget" name="mOptionsStackedWidget">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="currentIndex">
+          <number>1</number>
+         </property>
+         <widget class="QWidget" name="mOptsPage_01">
+          <layout class="QVBoxLayout" name="verticalLayout_14">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QScrollArea" name="scrollArea">
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>669</width>
+                <height>793</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_13">
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QgsCollapsibleGroupBox" name="groupBox">
+                 <property name="title">
+                  <string>Mission Properties</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label">
+                    <property name="text">
+                     <string>Cruise:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="lineEditCruise">
+                    <property name="text">
+                     <string>ShipXXX</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_2">
+                    <property name="text">
+                     <string>Station:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_3">
+                    <property name="text">
+                     <string>Dive:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="lineEditDive">
+                    <property name="text">
+                     <string>DiveX</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="lineEditStation">
+                    <property name="text">
+                     <string>123456</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QgsCollapsibleGroupBox" name="groupBox_4">
+                 <property name="title">
+                  <string>Project Configuration</string>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_4">
+                  <item>
+                   <widget class="QToolButton" name="mToolButtonLoad">
+                    <property name="whatsThis">
+                     <string>Load a PosiView project configuration</string>
+                    </property>
+                    <property name="text">
+                     <string>...</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="mToolButtonSave">
+                    <property name="whatsThis">
+                     <string>Save PosiView project to file</string>
+                    </property>
+                    <property name="text">
+                     <string>...</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>440</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QgsCollapsibleGroupBox" name="groupBox_5">
+                 <property name="title">
+                  <string>Recorder</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_6">
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_20">
+                    <property name="text">
+                     <string>Recorder path:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QToolButton" name="toolButtonSelectLogPath">
+                    <property name="statusTip">
+                     <string>Select Logging Path</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>Select Logging Path</string>
+                    </property>
+                    <property name="text">
+                     <string>...</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="lineEditRecorderPath"/>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QCheckBox" name="checkBoxAutoRecording">
+                    <property name="text">
+                     <string>Always start recording</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QgsCollapsibleGroupBox" name="groupBox_6">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="title">
+                  <string>Layer</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QgsCollapsibleGroupBox" name="mGroupBox">
+                 <property name="title">
+                  <string>Miscellaneous</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_7">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_21">
+                    <property name="text">
+                     <string>Duration of messagebar notifications:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QCheckBox" name="checkBoxUtcClock">
+                    <property name="text">
+                     <string>Show UTC clock in guidance window</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="spinBoxNotifyDuration">
+                    <property name="suffix">
+                     <string> sec</string>
+                    </property>
+                    <property name="maximum">
+                     <number>3600</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>10</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <layout class="QHBoxLayout" name="horizontalLayout_8">
+                    <item>
+                     <widget class="QComboBox" name="comboBoxDefaultPositionFormat">
+                      <property name="currentIndex">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>Decimal Degrees</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Degrees, Decimal Minutes</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Degrees, Minutes,  Decimal Seconds</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="checkBoxWithSuffix">
+                      <property name="layoutDirection">
+                       <enum>Qt::LeftToRight</enum>
+                      </property>
+                      <property name="text">
+                       <string>Suffix</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_23">
+                    <property name="text">
+                     <string>Default position format:</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="mOptsPage_02">
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QScrollArea" name="scrollArea_2">
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents_2">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>669</width>
+                <height>793</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_8">
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QgsCollapsibleGroupBox" name="groupBoxProvider">
+                 <property name="title">
+                  <string>Position Provider</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_11">
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_2">
+                    <item>
+                     <widget class="QListView" name="mDataProviderListView"/>
+                    </item>
+                    <item>
+                     <layout class="QVBoxLayout" name="verticalLayout_5">
+                      <item>
+                       <spacer name="verticalSpacer_4">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QToolButton" name="toolButtonAddDataProvider">
+                        <property name="minimumSize">
+                         <size>
+                          <width>32</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="toolTip">
+                         <string>Add a new data provider</string>
+                        </property>
+                        <property name="statusTip">
+                         <string>Add a new data provider</string>
+                        </property>
+                        <property name="text">
+                         <string>New Provider</string>
+                        </property>
+                        <property name="icon">
+                         <iconset>
+                          <normaloff>:/images/themes/default/mActionAdd.svg</normaloff>:/images/themes/default/mActionAdd.svg</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QToolButton" name="toolButtonRemoveDataProvider">
+                        <property name="minimumSize">
+                         <size>
+                          <width>32</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="toolTip">
+                         <string>Remove current provider</string>
+                        </property>
+                        <property name="statusTip">
+                         <string>Remove current provider</string>
+                        </property>
+                        <property name="text">
+                         <string>Remove Provider</string>
+                        </property>
+                        <property name="icon">
+                         <iconset>
+                          <normaloff>:/images/themes/default/mActionRemove.svg</normaloff>:/images/themes/default/mActionRemove.svg</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QgsCollapsibleGroupBox" name="mGroupBoxProviderProperties">
+                 <property name="title">
+                  <string>Provider Properties</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_4" columnstretch="1,4">
+                  <item row="5" column="1">
+                   <widget class="QComboBox" name="comboBoxParser">
+                    <item>
+                     <property name="text">
+                      <string>NONE</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="lineEditProviderName"/>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_15">
+                    <property name="text">
+                     <string>Name:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QComboBox" name="comboBoxProviderType"/>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_19">
+                    <property name="text">
+                     <string>Parser:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_16">
+                    <property name="text">
+                     <string>Type:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0" colspan="2">
+                   <widget class="QFrame" name="frame_3">
+                    <property name="frameShape">
+                     <enum>QFrame::HLine</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Sunken</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0" colspan="2">
+                   <layout class="QHBoxLayout" name="horizontalLayout_6">
+                    <item>
+                     <spacer name="horizontalSpacer_2">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButtonApplyDataProvider">
+                      <property name="text">
+                       <string>Apply Properties</string>
+                      </property>
+                      <property name="icon">
+                       <iconset>
+                        <normaloff>:/plugins/PosiView/refresh.png</normaloff>:/plugins/PosiView/refresh.png</iconset>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item row="2" column="0" colspan="2">
+                   <widget class="QStackedWidget" name="stackedWidgetDataDevice">
+                    <property name="currentIndex">
+                     <number>1</number>
+                    </property>
+                    <widget class="QWidget" name="pageUdpTcp">
+                     <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,2,2">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="label_17">
+                        <property name="text">
+                         <string>Host:</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="label_18">
+                        <property name="text">
+                         <string>Port:</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QSpinBox" name="spinBoxProviderPort">
+                        <property name="minimum">
+                         <number>1</number>
+                        </property>
+                        <property name="maximum">
+                         <number>65535</number>
+                        </property>
+                        <property name="value">
+                         <number>2000</number>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="2">
+                       <widget class="QCheckBox" name="checkBoxReuseAddr">
+                        <property name="text">
+                         <string>Reuse address</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="1" colspan="2">
+                       <widget class="QLineEdit" name="lineEditProviderHostName">
+                        <property name="text">
+                         <string>0.0.0.0</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="pageSerial">
+                     <layout class="QGridLayout" name="gridLayout_8" columnstretch="1,2,2">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="label_30">
+                        <property name="text">
+                         <string>Parity:</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="label_27">
+                        <property name="text">
+                         <string>Port:</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="1" rowspan="2" colspan="2">
+                       <layout class="QGridLayout" name="gridLayout_5">
+                        <property name="sizeConstraint">
+                         <enum>QLayout::SetMinimumSize</enum>
+                        </property>
+                        <item row="0" column="0">
+                         <widget class="QComboBox" name="comboBoxSerialPort"/>
+                        </item>
+                        <item row="0" column="1">
+                         <widget class="QLabel" name="label_28">
+                          <property name="text">
+                           <string>Baudrate:</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="2">
+                         <widget class="QComboBox" name="comboBoxBaudRate">
+                          <property name="currentIndex">
+                           <number>3</number>
+                          </property>
+                          <item>
+                           <property name="text">
+                            <string notr="true">1200</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string notr="true">2400</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string notr="true">4800</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string notr="true">9600</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string notr="true">19200</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string notr="true">38400</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string notr="true">57600</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string notr="true">115200</string>
+                           </property>
+                          </item>
+                         </widget>
+                        </item>
+                        <item row="0" column="3">
+                         <widget class="QLabel" name="label_29">
+                          <property name="text">
+                           <string>Databits:</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="4">
+                         <widget class="QComboBox" name="comboBoxDatabits">
+                          <property name="currentIndex">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <property name="text">
+                            <string notr="true">5</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string notr="true">6</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string notr="true">7</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string notr="true">8</string>
+                           </property>
+                          </item>
+                         </widget>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="QComboBox" name="comboBoxParity">
+                          <property name="currentIndex">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <property name="text">
+                            <string>None</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Even</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Odd</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Space</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Mark</string>
+                           </property>
+                          </item>
+                         </widget>
+                        </item>
+                        <item row="1" column="1">
+                         <widget class="QLabel" name="label_31">
+                          <property name="text">
+                           <string>Stopbits:</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="2">
+                         <widget class="QComboBox" name="comboBoxStopbits">
+                          <item>
+                           <property name="text">
+                            <string notr="true">1</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string notr="true">2</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string notr="true">1.5</string>
+                           </property>
+                          </item>
+                         </widget>
+                        </item>
+                        <item row="1" column="3">
+                         <widget class="QLabel" name="label_32">
+                          <property name="text">
+                           <string>Flow Control:</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="4">
+                         <widget class="QComboBox" name="comboBoxFlow">
+                          <property name="currentIndex">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <property name="text">
+                            <string>None</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Hardware (RTS/CTS)</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Software (XON/XOFF)</string>
+                           </property>
+                          </item>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="mOptsPage_03">
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QScrollArea" name="scrollArea_3">
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents_3">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>669</width>
+                <height>793</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_4">
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QgsCollapsibleGroupBox" name="groupBoxMobiles">
+                 <property name="title">
+                  <string>Mobiles</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_10">
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_3">
+                    <item>
+                     <widget class="QListView" name="mMobileListView">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="editTriggers">
+                       <set>QAbstractItemView::NoEditTriggers</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QVBoxLayout" name="verticalLayout">
+                      <item>
+                       <spacer name="verticalSpacer_5">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item alignment="Qt::AlignHCenter">
+                       <widget class="QToolButton" name="toolButtonAddMobile">
+                        <property name="minimumSize">
+                         <size>
+                          <width>32</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="toolTip">
+                         <string>Add a new mobile</string>
+                        </property>
+                        <property name="statusTip">
+                         <string>Add a new mobile</string>
+                        </property>
+                        <property name="text">
+                         <string>...</string>
+                        </property>
+                        <property name="icon">
+                         <iconset>
+                          <normaloff>:/images/themes/default/mActionAdd.svg</normaloff>:/images/themes/default/mActionAdd.svg</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                      <item alignment="Qt::AlignHCenter">
+                       <widget class="QToolButton" name="toolButtonRemoveMobile">
+                        <property name="minimumSize">
+                         <size>
+                          <width>32</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="toolTip">
+                         <string>Delete mobile</string>
+                        </property>
+                        <property name="statusTip">
+                         <string>Delete mobile</string>
+                        </property>
+                        <property name="text">
+                         <string>...</string>
+                        </property>
+                        <property name="icon">
+                         <iconset>
+                          <normaloff>:/images/themes/default/mActionRemove.svg</normaloff>:/images/themes/default/mActionRemove.svg</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QgsCollapsibleGroupBox" name="mGroupBoxMobileProperties">
+                 <property name="title">
+                  <string>Mobile Properties</string>
+                 </property>
+                 <property name="collapsed">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_3" columnstretch="0,1,1">
+                  <item row="3" column="2">
+                   <widget class="QDoubleSpinBox" name="doubleSpinBoxMobileWidth">
+                    <property name="minimum">
+                     <double>0.010000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1" colspan="2">
+                   <widget class="QLineEdit" name="lineEditMobileShape">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="contextMenuPolicy">
+                     <enum>Qt::CustomContextMenu</enum>
+                    </property>
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shape of the mobile as a collection of points.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the mobiles shape as a collection of points enclosed by brackets.&lt;/p&gt;&lt;p&gt;Mobile should be upright and the vertical size should be normalized to 1.0.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="16" column="0" colspan="3">
+                   <widget class="QFrame" name="frame_2">
+                    <property name="frameShape">
+                     <enum>QFrame::HLine</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Sunken</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="0">
+                   <widget class="QLabel" name="label_9">
+                    <property name="text">
+                     <string>Timeout, Notification Timeout:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_5">
+                    <property name="text">
+                     <string>Name:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="2">
+                   <widget class="QSpinBox" name="spinBoxMobileNotification">
+                    <property name="toolTip">
+                     <string>Statusbar notification after n times timeout</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A notification is displayed in the messagebar if the a fix is missing for n multiples of the timeout.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="suffix">
+                     <string> * Timeout</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="1">
+                   <widget class="QSpinBox" name="spinBoxTrackLength">
+                    <property name="maximum">
+                     <number>100000</number>
+                    </property>
+                    <property name="singleStep">
+                     <number>10</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="13" column="0">
+                   <widget class="QLabel" name="label_14">
+                    <property name="text">
+                     <string>Provider, Filter:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0">
+                   <widget class="QLabel" name="label_8">
+                    <property name="text">
+                     <string>z-Value:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_7">
+                    <property name="text">
+                     <string>Length,  Width [m]:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="2">
+                   <widget class="QgsColorButton" name="mColorButtonMobileFillColor">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>24</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="allowOpacity">
+                     <bool>true</bool>
+                    </property>
+                    <property name="allowAlpha" stdset="0">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="11" column="1">
+                   <widget class="QCheckBox" name="checkBoxShowLabel">
+                    <property name="text">
+                     <string>Visible</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="12" column="0" colspan="3">
+                   <widget class="QFrame" name="frame">
+                    <property name="frameShape">
+                     <enum>QFrame::HLine</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Sunken</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1" colspan="2">
+                   <widget class="QLineEdit" name="lineEditMobileName"/>
+                  </item>
+                  <item row="11" column="0">
+                   <widget class="QLabel" name="label_4">
+                    <property name="text">
+                     <string>Marker Label:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_6">
+                    <property name="text">
+                     <string>Type:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="1">
+                   <widget class="QDoubleSpinBox" name="doubleSpinBoxXOffset">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Distance between centerpoint of the shape and position reference increasing towards bow/top side.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Distance between centerpoint of the shape and position reference increasing towards bow/top side.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="minimum">
+                     <double>-1000.000000000000000</double>
+                    </property>
+                    <property name="maximum">
+                     <double>1000.000000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="13" column="2">
+                   <widget class="QLineEdit" name="lineEditProviderFilter">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QDoubleSpinBox" name="doubleSpinBoxMobileLength">
+                    <property name="minimum">
+                     <double>0.010000000000000</double>
+                    </property>
+                    <property name="maximum">
+                     <double>999.990000000000009</double>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="0">
+                   <widget class="QLabel" name="label_11">
+                    <property name="text">
+                     <string>Track Length and Color:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="17" column="2">
+                   <widget class="QPushButton" name="pushButtonApplyMobile">
+                    <property name="text">
+                     <string>Apply Properties</string>
+                    </property>
+                    <property name="icon">
+                     <iconset>
+                      <normaloff>:/plugins/PosiView/refresh.png</normaloff>:/plugins/PosiView/refresh.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="1">
+                   <widget class="QgsColorButton" name="mColorButtonMobileColor">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>24</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="allowOpacity">
+                     <bool>true</bool>
+                    </property>
+                    <property name="allowAlpha" stdset="0">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="2">
+                   <widget class="QDoubleSpinBox" name="doubleSpinBoxYOffset">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Distance between centerpoint of the shape and position reference increasing towards starboard/right side.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="whatsThis">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Distance between centerpoint of the shape and position reference increasing towards starboard/right side.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                    <property name="minimum">
+                     <double>-1000.000000000000000</double>
+                    </property>
+                    <property name="maximum">
+                     <double>1000.000000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="2">
+                   <widget class="QgsColorButton" name="mColorButtonMobileTrackColor">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="allowOpacity">
+                     <bool>true</bool>
+                    </property>
+                    <property name="allowAlpha" stdset="0">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="0">
+                   <widget class="QLabel" name="label_24">
+                    <property name="text">
+                     <string>Timeout Behavior:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="1">
+                   <widget class="QCheckBox" name="checkBoxFadeOut">
+                    <property name="text">
+                     <string>Fade Out</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="15" column="0">
+                   <widget class="QLabel" name="label_12">
+                    <property name="text">
+                     <string>Data Provider:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0">
+                   <widget class="QLabel" name="label_10">
+                    <property name="text">
+                     <string>Color of Outline and Fill:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="15" column="1" colspan="2">
+                   <layout class="QHBoxLayout" name="horizontalLayout_5">
+                    <item>
+                     <widget class="QTableView" name="mMobileProviderTableView">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="editTriggers">
+                       <set>QAbstractItemView::NoEditTriggers</set>
+                      </property>
+                      <property name="selectionBehavior">
+                       <enum>QAbstractItemView::SelectRows</enum>
+                      </property>
+                      <attribute name="horizontalHeaderStretchLastSection">
+                       <bool>true</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderVisible">
+                       <bool>false</bool>
+                      </attribute>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QVBoxLayout" name="verticalLayout_12">
+                      <item>
+                       <widget class="QToolButton" name="toolButtonRefreshMobileProvider">
+                        <property name="minimumSize">
+                         <size>
+                          <width>32</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="toolTip">
+                         <string>Update data provider list</string>
+                        </property>
+                        <property name="statusTip">
+                         <string>Update data provider list</string>
+                        </property>
+                        <property name="text">
+                         <string>...</string>
+                        </property>
+                        <property name="icon">
+                         <iconset>
+                          <normaloff>:/plugins/PosiView/refresh.png</normaloff>:/plugins/PosiView/refresh.png</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                      <item alignment="Qt::AlignHCenter">
+                       <widget class="QToolButton" name="toolButtonRemoveMobileProvider">
+                        <property name="minimumSize">
+                         <size>
+                          <width>32</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="toolTip">
+                         <string>Remove provider from list</string>
+                        </property>
+                        <property name="statusTip">
+                         <string>Remove provider from list</string>
+                        </property>
+                        <property name="text">
+                         <string>...</string>
+                        </property>
+                        <property name="icon">
+                         <iconset>
+                          <normaloff>:/images/themes/default/mActionRemove.svg</normaloff>:/images/themes/default/mActionRemove.svg</iconset>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="verticalSpacer_6">
+                        <property name="orientation">
+                         <enum>Qt::Vertical</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_13">
+                    <property name="text">
+                     <string>Shape:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="1">
+                   <widget class="QSpinBox" name="spinBoxZValue">
+                    <property name="maximum">
+                     <number>200</number>
+                    </property>
+                    <property name="value">
+                     <number>100</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="1">
+                   <widget class="QSpinBox" name="spinBoxMobileTimeout">
+                    <property name="suffix">
+                     <string> sec</string>
+                    </property>
+                    <property name="maximum">
+                     <number>3600</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1" colspan="2">
+                   <widget class="QComboBox" name="comboBoxMobileType">
+                    <property name="currentIndex">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>BOX</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>CROSS</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>X</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>SHAPE</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="13" column="1">
+                   <widget class="QComboBox" name="comboBoxProviders"/>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_22">
+                    <property name="text">
+                     <string>Offset towards bow, starboard [m]:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QCheckBox" name="checkBoxDefaultIcon">
+                    <property name="text">
+                     <string>Show Default Icon</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_25">
+                    <property name="text">
+                     <string>Low scale presentation of shape objects:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="2">
+                   <widget class="QCheckBox" name="checkBoxDefIconFilled">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>Filled</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="14" column="1" colspan="2">
+                   <widget class="QgsCheckableComboBox" name="comboBoxProviderFlags">
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
+                    </property>
+                    <property name="defaultText">
+                     <string>none</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="14" column="0">
+                   <widget class="QLabel" name="label_26">
+                    <property name="text">
+                     <string>Advanced Filter:</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="mButtonBoxFrame">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QDialogButtonBox" name="buttonBox">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="standardButtons">
+         <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Help|QDialogButtonBox::Ok</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+  <action name="actionLoadConfiguration">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/themes/default/mActionFileOpen.svg</normaloff>:/images/themes/default/mActionFileOpen.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Load Configuration</string>
+   </property>
+   <property name="toolTip">
+    <string>Load a PosiView configuration</string>
+   </property>
+  </action>
+  <action name="actionSaveConfiguration">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/images/themes/default/mActionFileSave.svg</normaloff>:/images/themes/default/mActionFileSave.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Save Configuration</string>
+   </property>
+   <property name="toolTip">
+    <string>Save PosiView configuration</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsCheckableComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgscheckablecombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QgsCollapsibleGroupBox</class>
+   <extends>QGroupBox</extends>
+   <header>qgscollapsiblegroupbox.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QgsColorButton</class>
+   <extends>QToolButton</extends>
+   <header>qgscolorbutton.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>mOptionsListWidget</sender>
+   <signal>currentRowChanged(int)</signal>
+   <receiver>mOptionsStackedWidget</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>86</x>
+     <y>325</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>690</x>
+     <y>23</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxDefaultIcon</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxDefIconFilled</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>594</x>
+     <y>383</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>692</x>
+     <y>382</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

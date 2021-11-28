@@ -41,6 +41,9 @@ from .resources import *
 from .ReceiveSensorData_dialog import ReceiveSensorDataDialog
 import os.path
 
+from .gui.posiview_properties import PosiviewProperties
+
+from .posiview_project import PosiViewProject
 
 class ReceiveSensorData:
     """QGIS Plugin Implementation."""
@@ -73,8 +76,14 @@ class ReceiveSensorData:
             QCoreApplication.installTranslator(self.translator)
 
         # Declare instance attributes
-        self.actions = []
+        self.actions = {}
         self.menu = self.tr(u'&ReceiveSensorData')
+
+        #self.toolbar = self.iface.addToolBar(u'ReceiveSensorData')
+        #self.toolbar.setObjectName(u'ReceiveSensorData')
+
+
+        self.project = PosiViewProject(self.iface)
 
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
@@ -99,18 +108,25 @@ class ReceiveSensorData:
         return QCoreApplication.translate('ReceiveSensorData', message)
 
 
+
     def add_action(
         self,
+        name,
         icon_path,
         text,
         callback,
+        toggle_flag=False,
         enabled_flag=True,
+        checkable_flag=False,
+        visible_flag=True,
         add_to_menu=True,
         add_to_toolbar=True,
         status_tip=None,
         whats_this=None,
         parent=None):
         """Add a toolbar icon to the toolbar.
+        :param name: Objectname of the action. Serves also as key for the stored actions.
+        :type name: str
 
         :param icon_path: Path to the icon for this action. Can be a resource
             path (e.g. ':/plugins/foo/bar.png') or a normal file system path.
@@ -125,6 +141,19 @@ class ReceiveSensorData:
         :param enabled_flag: A flag indicating if the action should be enabled
             by default. Defaults to True.
         :type enabled_flag: bool
+
+        :param toggle_flag: A flag indicating if the action should connect
+            the toggled or triggered signal by default.
+            Defaults to triggered (False)
+        :type toggle_flag: bool
+
+        :param checkable_flag: A flag indicating if the action should be checkable
+            by default. Defaults to False.
+        :type checkable: bool
+
+        :param visible_flag: A flag indicating if the action should be displayed
+            by default. Defaults to True.
+        :type visible: bool
 
         :param add_to_menu: Flag indicating whether the action should also
             be added to the menu. Defaults to True.
@@ -151,8 +180,14 @@ class ReceiveSensorData:
 
         icon = QIcon(icon_path)
         action = QAction(icon, text, parent)
-        action.triggered.connect(callback)
+        action.setObjectName(name)
+        if toggle_flag:
+            action.toggled.connect(callback)
+        else:
+            action.triggered.connect(callback)
         action.setEnabled(enabled_flag)
+        action.setCheckable(checkable_flag)
+        action.setVisible(visible_flag)
 
         if status_tip is not None:
             action.setStatusTip(status_tip)
@@ -160,42 +195,121 @@ class ReceiveSensorData:
         if whats_this is not None:
             action.setWhatsThis(whats_this)
 
-        if add_to_toolbar:
-            # Adds plugin icon to Plugins toolbar
-            self.iface.addToolBarIcon(action)
+        #if add_to_toolbar:
+        #    self.toolbar.addAction(action)
 
         if add_to_menu:
             self.iface.addPluginToMenu(
                 self.menu,
                 action)
 
-        self.actions.append(action)
+        self.actions[name] = action
 
         return action
+
+ 
+
 
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
 
         icon_path = ':/plugins/ReceiveSensorData/icon.png'
+
+        iconPath = ':/plugins/ReceiveSensorData/'
+
         self.add_action(
+            u'openMenu',
             icon_path,
-            text=self.tr(u'Recieve Sensor data'),
+            text=self.tr(u'&ReceiveSensorData'),
             callback=self.run,
+            toggle_flag=False,
+            enabled_flag=True,
+            checkable_flag=False,
+            visible_flag=True,
+            add_to_menu=True,
+            add_to_toolbar=True,
+            status_tip=None,
+            whats_this=None,
             parent=self.iface.mainWindow())
 
+
+        loadAction = self.add_action(
+            u'loadAction',
+            os.path.join(iconPath, 'icon.png'),
+            text=self.tr(u'&Enable PosiView'),
+            callback=self.run,
+            status_tip=self.tr(u'Enable PosiView'),
+            checkable_flag=True,
+            visible_flag=False,
+            parent=self.iface.mainWindow())
+
+        trackingAction = self.add_action(
+            u'trackingAction',
+            os.path.join(iconPath, 'track_start.png'),
+            text=self.tr(u'&Start/stop tracking'),
+            callback=self.startStopTracking,
+            toggle_flag=True,
+            visible_flag=True,
+            checkable_flag=True,
+            status_tip=self.tr(u'Start/stop tracking'),
+            parent=self.iface.mainWindow())
+
+        
+        configAction = self.add_action(
+            u'configAction',
+            os.path.join(iconPath, 'icon.png'),
+            text=self.tr(u'&Configure RecieveSensor'),
+            callback=self.configure,
+           toggle_flag=False,
+            enabled_flag=True,
+            checkable_flag=False,
+            visible_flag=True,
+            add_to_menu=True,
+            add_to_toolbar=True,
+            status_tip=None,
+            whats_this=None,
+            parent=self.iface.mainWindow())
+
+        
         # will be set False in run()
         self.first_start = True
 
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
+
+        """
         for action in self.actions:
             self.iface.removePluginMenu(
                 self.tr(u'&ReceiveSensorData'),
                 action)
             self.iface.removeToolBarIcon(action)
+        """
+        self.project.stopTracking()
+        #self.tracking.removeMobiles()
+        #self.tracking.removeProviders()
+        self.project.unload()
+        #self.iface.mainWindow().statusBar().removeWidget(self.positionDisplay)
+        for _, action in self.actions.items():
+            self.iface.removePluginMenu(
+                self.tr(u'&ReceiveSensorData'),
+                action)
+        #    self.iface.removeToolBarIcon(action)
+        #del self.toolbar
 
-
+#     @pyqtSlot(bool)
+    def startStopTracking(self, checked=False):
+        ''' Start or stop the online tracking
+        :param checked: decide wether to start or stop tracking
+        :type checked: bool
+        '''
+        if checked:
+            self.project.startTracking()
+            if self.project.autoRecord:
+                self.actions['recordAction'].setChecked(checked)
+        else:
+            self.project.stopTracking()
+            self.actions['recordAction'].setChecked(checked)
 
     #  start recieve sensor data
     def recievestart(self):
@@ -232,6 +346,45 @@ class ReceiveSensorData:
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
             pass
+
+
+#     @pyqtSlot(dict)
+    def onApplyConfigChanges(self, properties):
+        '''Apply the changed configuration to the posiview project. The is done
+           by unloading and loading again the project.
+        :param properties: project configuration
+        :type properties: dict
+        '''
+        pass
+        ''' 
+        if self.actions['loadAction'].isChecked():
+            track = self.actions['trackingAction'].isChecked()
+            record = self.actions['recordAction'].isChecked()
+            self.actions['trackingAction'].setChecked(False)
+            self.actions['recordAction'].setChecked(False)
+            self.tracking.removeMobiles()
+            self.tracking.removeProviders()
+            self.project.unload()
+            self.project.load(properties)
+            self.project.store()
+            self.recorder.path = self.project.recorderPath
+            #self.tracking.setMobiles(self.project.mobileItems)
+            self.guidance.setMobiles(self.project.mobileItems)
+            self.compass.setMobiles(self.project.mobileItems)
+            self.tracking.setProviders(self.project.dataProviders)
+            self.recorder.setMobiles(self.project.mobileItems)
+            self.actions['trackingAction'].setChecked(track)
+            self.actions['recordAction'].setChecked(record)
+        '''
+
+
+    def configure(self):
+        '''Execute the configuration dialogue and apply properties if accepted
+        '''
+        propDlg = PosiviewProperties(self.project, self.iface.mainWindow())
+        propDlg.applyChanges.connect(self.onApplyConfigChanges)
+        propDlg.exec_()
+
 
     def sensorget(self):
         #self.iface.messageBar().createMessage('Action', 'Doing Something') 
