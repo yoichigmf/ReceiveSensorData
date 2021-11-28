@@ -21,16 +21,17 @@
  *                                                                         *
  ***************************************************************************/
 """
-from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
+from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, QTimer
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
 
 
-from qgis.core  import QgsTask
+from qgis.core  import QgsTask,QgsApplication
 
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 import time
+import threading
 
 
 
@@ -219,6 +220,7 @@ class ReceiveSensorData:
 
             self.task = SensorReadTask("get sensor data")
             self.task.setiface(self.iface)
+            QgsApplication.taskManager().addTask(self.task)
 
 
         # show the dialog
@@ -260,6 +262,35 @@ class SensorReadTask(QgsTask):
     def  setiface( self, iface ):
 
         self.iface = iface
+
+    def startthread( self, interval ):
+
+        self.iface.messageBar().pushMessage('Start thread' )
+
+
+    def scheduler( interval, f, wait = True ):
+
+        base_time = time.time()
+
+        next_time = 0.0
+        while True:
+            t = threading.Thread( target = f )
+            t.start()
+
+            if wait:
+                t.join()
+            
+            next_time = ((base_time - time.time()) % interval) or interval
+            time.sleep(next_time)
+
+    def  start_task(self, task_function, interval):
+
+        self.timer = QTimer(self)
+
+        self.timer.timeout.connect(task_function)
+
+        self.timer.start( interval)
+
 
     def run(self):
         """This function is where you do the 'heavy lifting' or implement
