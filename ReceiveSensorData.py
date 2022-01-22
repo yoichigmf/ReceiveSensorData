@@ -32,6 +32,9 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 import time
 import threading
+import urllib.request
+
+import json
 
 
 
@@ -90,6 +93,9 @@ class ReceiveSensorData:
         self.first_start = None
 
         self.recieveStatus = False
+
+ 
+
         
 
     # noinspection PyMethodMayBeStatic
@@ -231,46 +237,7 @@ class ReceiveSensorData:
             status_tip=None,
             whats_this=None,
             parent=self.iface.mainWindow())
-
-
-        loadAction = self.add_action(
-            u'loadAction',
-            os.path.join(iconPath, 'icon.png'),
-            text=self.tr(u'&Enable PosiView'),
-            callback=self.run,
-            status_tip=self.tr(u'Enable PosiView'),
-            checkable_flag=True,
-            visible_flag=False,
-            parent=self.iface.mainWindow())
-
-        trackingAction = self.add_action(
-            u'trackingAction',
-            os.path.join(iconPath, 'track_start.png'),
-            text=self.tr(u'&Start/stop tracking'),
-            callback=self.startStopTracking,
-            toggle_flag=True,
-            visible_flag=True,
-            checkable_flag=True,
-            status_tip=self.tr(u'Start/stop tracking'),
-            parent=self.iface.mainWindow())
-
-        
-        configAction = self.add_action(
-            u'configAction',
-            os.path.join(iconPath, 'icon.png'),
-            text=self.tr(u'&Configure RecieveSensor'),
-            callback=self.configure,
-           toggle_flag=False,
-            enabled_flag=True,
-            checkable_flag=False,
-            visible_flag=True,
-            add_to_menu=True,
-            add_to_toolbar=True,
-            status_tip=None,
-            whats_this=None,
-            parent=self.iface.mainWindow())
-
-        
+      
         # will be set False in run()
         self.first_start = True
 
@@ -316,6 +283,23 @@ class ReceiveSensorData:
         self.recieveStatus = True
             
 
+    def  newTask( self ):
+
+        url = 'http://localhost:8000/cscs/cscsstat.json'
+
+        req = urllib.request.Request(url)
+        with urllib.request.urlopen(req) as res:
+             body = res.read()
+    #print(body)
+
+             dres = json.loads( body )
+             self.iface.messageBar().pushMessage(str(dres["distance"]))
+             self.dlg.Text_res.setText( str(dres["distance"]))
+        #newtask = SensorReadTask("get sensor data")
+        #newtask.setParent( self )
+        #QgsApplication.taskManager().addTask(newtask)
+
+
     #  stop  recieve sensor data
     def recievestop( self ):
         self.recieveStatus = False
@@ -331,12 +315,18 @@ class ReceiveSensorData:
 
             self.dlg.buttonStartStop.clicked.connect(self.sensorget)
             self.dlg.buttonStartStop.setText('センサ取得開始')
+            self.timer = QTimer()
 
-            self.task = SensorReadTask("get sensor data")
-            self.task.setiface(self.iface)
-            QgsApplication.taskManager().addTask(self.task)
+            self.timer.timeout.connect(self.newTask)
+
+            #self.task = SensorReadTask("get sensor data")
+           # self.task.setiface(self.iface)
+            #QgsApplication.taskManager().addTask(self.task)
 
 
+        
+
+        
         # show the dialog
         self.dlg.show()
         # Run the dialog event loop
@@ -386,28 +376,37 @@ class ReceiveSensorData:
         propDlg.exec_()
 
 
+    def  pushMessage( self, message ):
+        self.iface.messageBar().pushMessage(message)
+
     def sensorget(self):
         #self.iface.messageBar().createMessage('Action', 'Doing Something') 
 
         if self.recieveStatus:
-            self.iface.messageBar().pushMessage('Stop')
+            self.iface.messageBar().pushMessage('Stop!')
             self.recieveStatus= False
             self.dlg.buttonStartStop.setText('センサ取得開始')
+            self.timer.stop() #Set timer interval in milliseconds(Task repeats every 30 seconds)
         else:
-            self.iface.messageBar().pushMessage('Start')
+            self.iface.messageBar().pushMessage('Start!')
             self.recieveStatus= True
             self.dlg.buttonStartStop.setText('センサ取得中止')
+            self.timer.start(3000) #Set timer interval in milliseconds(Task repeats every 30 seconds)
 
 
 
 class SensorReadTask(QgsTask):
     """Here we subclass QgsTask"""
 
-    iface = None
+   # iface = None
 
-    xpos = 0.0
+    #xpos = 0.0
 
-    recievestatus = False
+   # recievestatus = False
+
+    def setParent( self, Parent):
+        self.parent = Parent
+        self.iface = self.parent.iface
 
     def __init__(self, desc):
         QgsTask.__init__(self, desc)
@@ -421,35 +420,15 @@ class SensorReadTask(QgsTask):
         self.iface.messageBar().pushMessage('Start thread' )
 
 
-    def scheduler( interval, f, wait = True ):
-
-        base_time = time.time()
-
-        next_time = 0.0
-        while True:
-            t = threading.Thread( target = f )
-            t.start()
-
-            if wait:
-                t.join()
-            
-            next_time = ((base_time - time.time()) % interval) or interval
-            time.sleep(next_time)
-
-    def  start_task(self, task_function, interval):
-
-        self.timer = QTimer(self)
-
-        self.timer.timeout.connect(task_function)
-
-        self.timer.start( interval)
-
-
     def run(self):
         """This function is where you do the 'heavy lifting' or implement
         the task which you want to run in a background thread. This function 
         must return True or False and should only interact with the main thread
         via signals"""
+
+        self.parent.pushMessage('sensor get')
+
+        """
         for i in range (21):
             time.sleep(0.25)
             val = i * 5
@@ -458,6 +437,7 @@ class SensorReadTask(QgsTask):
             #check to see if the task has been cancelled
             if self.isCanceled():
                 return False
+        """
         return True
 
     def finished(self, result):
