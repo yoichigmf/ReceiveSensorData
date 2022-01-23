@@ -26,7 +26,7 @@ from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
 
 
-from qgis.core  import QgsTask,QgsApplication
+from qgis.core  import QgsTask,QgsApplication, QgsPointXY,QgsRectangle
 
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
@@ -285,7 +285,11 @@ class ReceiveSensorData:
 
     def  newTask( self ):
 
-        url = 'http://localhost:8000/cscs/cscsstat.json'
+        url = self.dlg.lineEdit_URL.text()
+
+        #url = 'http://localhost:8000/cscs/cscsstat.json'
+
+        wlength = float(self.dlg.lineEdit_LW.text())
 
         req = urllib.request.Request(url)
         with urllib.request.urlopen(req) as res:
@@ -293,8 +297,31 @@ class ReceiveSensorData:
     #print(body)
 
              dres = json.loads( body )
-             self.iface.messageBar().pushMessage(str(dres["distance"]))
-             self.dlg.Text_res.setText( str(dres["distance"]))
+             self.iface.messageBar().pushMessage(str(dres["cumulative_wheel_revs"]))
+             self.dlg.Text_res.setText( str(dres["cumulative_wheel_revs"]))
+
+             canvas = self.iface.mapCanvas()
+
+             xpos = dres["cumulative_wheel_revs"] * wlength
+             ypos = 0.0
+             ext = canvas.extent()
+             scale=canvas.scale()
+            # self.iface.mapCanvas().setCenter(QgsPointXY(xpos,ypos))
+             #self.iface.mapCanvas().refresh()
+             center =  self.iface.mapCanvas().center()
+
+             rect = QgsRectangle(QgsPointXY(xpos,ypos), QgsPointXY(xpos,ypos))
+             self.iface.mapCanvas().setExtent(rect)
+             self.iface.mapCanvas().refresh()
+
+             center =  self.iface.mapCanvas().center()
+             
+             #self.emit(SIGNAL("("extentsChanged()"), canvas )
+             self.iface.messageBar().pushMessage(str(center.x) + " :" + str(xpos))
+
+
+
+             
         #newtask = SensorReadTask("get sensor data")
         #newtask.setParent( self )
         #QgsApplication.taskManager().addTask(newtask)
@@ -391,7 +418,13 @@ class ReceiveSensorData:
             self.iface.messageBar().pushMessage('Start!')
             self.recieveStatus= True
             self.dlg.buttonStartStop.setText('センサ取得中止')
-            self.timer.start(3000) #Set timer interval in milliseconds(Task repeats every 30 seconds)
+
+            sec = self.dlg.lineEdit.text()
+
+            self.iface.messageBar().pushMessage("interval "+ sec)
+
+            interval = float( sec ) * 100.0
+            self.timer.start( interval ) #Set timer interval in milliseconds(Task repeats every 30 seconds)
 
 
 
