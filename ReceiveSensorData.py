@@ -27,12 +27,14 @@ from qgis.PyQt.QtWidgets import QAction
 
 
 from qgis.core  import QgsTask,QgsApplication, QgsPointXY,QgsRectangle
+from qgis.gui  import QgsVertexMarker
 
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 import time
 import threading
 import urllib.request
+import http
 
 import json
 
@@ -52,6 +54,7 @@ class ReceiveSensorData:
     """QGIS Plugin Implementation."""
 
     recieveStatus = False
+    
     
 
     def __init__(self, iface):
@@ -94,7 +97,7 @@ class ReceiveSensorData:
 
         self.recieveStatus = False
 
- 
+        self.last_vartex = None
 
         
 
@@ -293,31 +296,41 @@ class ReceiveSensorData:
 
         req = urllib.request.Request(url)
         with urllib.request.urlopen(req) as res:
-             body = res.read()
+
+             try:
+                 body = res.read()
     #print(body)
 
-             dres = json.loads( body )
-             self.iface.messageBar().pushMessage(str(dres["cumulative_wheel_revs"]))
-             self.dlg.Text_res.setText( str(dres["cumulative_wheel_revs"]))
+                 dres = json.loads( body )
+                 self.iface.messageBar().pushMessage(str(dres["cumulative_wheel_revs"]))
+                 self.dlg.Text_res.setText( str(dres["cumulative_wheel_revs"]))
 
-             canvas = self.iface.mapCanvas()
+                 canvas = self.iface.mapCanvas()
 
-             xpos = dres["cumulative_wheel_revs"] * wlength
-             ypos = 0.0
-             ext = canvas.extent()
-             scale=canvas.scale()
-            # self.iface.mapCanvas().setCenter(QgsPointXY(xpos,ypos))
-             #self.iface.mapCanvas().refresh()
-             center =  self.iface.mapCanvas().center()
+                 xpos = dres["cumulative_wheel_revs"] * wlength
+                 ypos = 0.0
+                # ext = canvas.extent()
+                #scale=canvas.scale()
+                 self.iface.mapCanvas().setCenter(QgsPointXY(xpos,ypos))
+                 self.iface.mapCanvas().refresh()
+                 #center =  self.iface.mapCanvas().center()
 
-             rect = QgsRectangle(QgsPointXY(xpos,ypos), QgsPointXY(xpos,ypos))
-             self.iface.mapCanvas().setExtent(rect)
-             self.iface.mapCanvas().refresh()
+                 #rect = QgsRectangle(QgsPointXY(xpos,ypos), QgsPointXY(xpos,ypos))
+                 #self.iface.mapCanvas().setExtent(rect)
+                 #self.iface.mapCanvas().refresh()
 
-             center =  self.iface.mapCanvas().center()
+                 if self.last_vartex is not None:
+                     self.iface.mapCanvas().scene().removeItem(self.last_vartex )
+
+                 self.last_vartex = QgsVertexMarker(self.iface.mapCanvas())
+                 self.last_vartex.setCenter(QgsPointXY(xpos,ypos))
+                 #center =  self.iface.mapCanvas().center()
              
              #self.emit(SIGNAL("("extentsChanged()"), canvas )
-             self.iface.messageBar().pushMessage(str(center.x) + " :" + str(xpos))
+                 self.iface.messageBar().pushMessage( str(xpos))
+             except   (http.client.IncompleteRead) as e:
+                self.iface.messageBar().pushMessage( "read incomplete")
+
 
 
 
